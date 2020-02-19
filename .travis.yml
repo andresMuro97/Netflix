@@ -6,4 +6,4 @@ script:
   - mvn package
   - chmod 400 acceso_instancia.pem
   - ssh-keyscan -H ec2-3-20-139-44.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
-  - scp -i acceso_instancia.pem target/Netflix-1.0-SNAPSHOT.war ubuntu@3-12-131-90:/tmp >> ~/.ssh/known_hosts
+  - scp -i acceso_instancia.pem target/Netflix-1.0-SNAPSHOT.war ubuntu@3.20.139.44:/tmp >> ~/.ssh/known_hosts
