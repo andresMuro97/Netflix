@@ -2,8 +2,10 @@ language: java
 
 jdk: openjdk8
 
-script: 
-  - mvn package
-  - chmod 400 acceso_instancia.pem
-  - ssh-keyscan -H ec2-3-20-139-44.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
-  - scp -i acceso_instancia.pem target/Netflix-1.0-SNAPSHOT.war ubuntu@3.20.139.44:/tmp >> ~/.ssh/known_hosts
+script:
+ - mvn package
+ - chmod 400 acceso_instancia.pem
+ - ssh-keyscan -H 3.20.139.44 >> ~/.ssh/known_hosts
+ - ssh-keyscan -H ec2-3-20-139-44.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
+ - ssh -i acceso_instancia.pem ubuntu@3.20.139.44 "sudo rm -rf /var/lib/tomcat/webapps/Netflix*"
+ - scp -i acceso_instancia.pem target/*.war ubuntu@3.20.139.44:/var/lib/tomcat/webapps/Netflix.war
